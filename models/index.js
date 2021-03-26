@@ -1,8 +1,14 @@
 const User = require('./User');
-const Cake = require('./Cake');
+const ProductType = require('./ProductType');
 const Customer = require('./Customer');
+const Size = require('./Size');
+const Flavor = require('./Flavor');
+const Orders = require('./Orders');
 
 
 module.exports = { User };
-module.exports = { Cake };
+module.exports = { ProductType };
 module.exports = { Customer };
+module.exports = { Size };
+module.exports = { Flavor };
+module.exports = { Orders };
