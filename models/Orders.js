@@ -24,6 +24,10 @@ Orders.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'User',
+                key: 'id',
+            },
         },
 
         pickup_date: {
@@ -37,11 +41,21 @@ Orders.init(
         pickup_time: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                isDate: true
+            },
         },
 
         base_price: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            validate: {
+                isDecimal: true,
+            },
+            references: {
+                model: 'Flavor',
+                key: 'id',
+            },
         },
 
         additional_price: {
@@ -49,19 +63,27 @@ Orders.init(
             allowNull: false,
             validate: {
                 isDecimal: true,
-            }
+            },
+             references: {
+                model: 'Size',
+                key: 'id',
+            },
         },
 
         product_type_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'ProductType',
+                key: 'id',
+            },
         },
 
         size_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'size',
+                model: 'Size',
                 key: 'id',
             },
         },
@@ -70,7 +92,7 @@ Orders.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'flavor',
+                model: 'Flavor',
                 key: 'id',
             },
         },
