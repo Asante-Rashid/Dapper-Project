@@ -8,80 +8,82 @@
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
     integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
 <body>
   <div class="app-dashboard shrink-medium">
-  {{!-- <div class="row expanded app-dashboard-top-nav-bar">
-    <div class="columns medium-2">
-      <button data-toggle="app-dashboard-sidebar" class="menu-icon hide-for-medium"></button>
-      <a class="app-dashboard-logo">Foundation</a>
-    </div>
-    <div class="columns show-for-medium">
-      <div class="app-dashboard-search-bar-container">
-        <input class="app-dashboard-search" type="search" placeholder="Search">
-        <i class="app-dashboard-search-icon fa fa-search"></i>
+    <div class="row expanded app-dashboard-top-nav-bar">
+      <div class="columns medium-2">
+        <button data-toggle="app-dashboard-sidebar" class="menu-icon hide-for-medium"></button>
+        <div class="app-dashboard-logo">Brazilian Bakery Cafe</div>
       </div>
-    </div>
-    <div class="columns shrink app-dashboard-top-bar-actions">
-      <button href="#" class="button hollow">Logout</button>
-      <a href="#" height="30" width="30" alt=""><i class="fa fa-info-circle"></i></a>
-    </div>
-  </div> --}}
-
-  <div class="app-dashboard-body off-canvas-wrapper">
-    <div id="app-dashboard-sidebar" class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
-      <div class="app-dashboard-sidebar-title-area">
-        <div class="app-dashboard-close-sidebar">
-          {{!-- <h3 class="app-dashboard-sidebar-block-title">Items</h3> --}}
-          <!-- Close button -->
-          <button id="close-sidebar" data-app-dashboard-toggle-shrink class="app-dashboard-sidebar-close-button show-for-medium" aria-label="Close menu" type="button">
-            <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-left"></i></a></span>
-          </button>
-        </div>
-        <div class="app-dashboard-open-sidebar">
-          <button id="open-sidebar" data-app-dashboard-toggle-shrink class="app-dashboard-open-sidebar-button show-for-medium" aria-label="open menu" type="button">
-            <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-right"></i></a></span>
-          </button>
-        </div>
+      <div class="columns show-for-medium">
+        {{!-- <div class="app-dashboard-search-bar-container">
+          <input class="app-dashboard-search" type="search" placeholder="Search">
+          <i class="app-dashboard-search-icon fa fa-search"></i>
+        </div> --}}
       </div>
-      <div class="app-dashboard-sidebar-inner">
-        <ul class="menu vertical">
-          <li><a href="#" class="is-active">
-            <i class="large fa fa-institution"></i><span class="app-dashboard-sidebar-text">Dashboard</span>
-          </a></li>
-          <li><a>
-            <i class="large fa fa-hourglass"></i><span class="app-dashboard-sidebar-text">Customers</span>
-          </a></li>
-          <li><a>
-            <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Orders</span>
-          </a></li>
-          <li><a href="#" class="is-active">
-            <i class="large fa fa-institution"></i><span class="app-dashboard-sidebar-text">Calander</span>
-          </a></li>
-          <li><a>
-            <i class="large fa fa-hourglass"></i><span class="app-dashboard-sidebar-text">Reports</span>
-          </a></li>
-          <li><a>
-            <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Products</span>
-          </a></li>
-        </ul>
+      <div class="columns shrink app-dashboard-top-bar-actions">
+        <a href="/login">
+        <button class="button hollow">login</button></a>
+        {{!-- <a href="#" height="30" width="30" alt=""><i class="fa fa-info-circle"></i></a> --}}
       </div>
     </div>
 
-    <div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-     {{{body}}}
+    <div class="app-dashboard-body off-canvas-wrapper">
+      <div id="app-dashboard-sidebar"
+        class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+        <div class="app-dashboard-sidebar-title-area">
+          <div class="app-dashboard-close-sidebar">
+            {{!-- <h3 class="app-dashboard-sidebar-block-title">Items</h3> --}}
+            <!-- Close button -->
+            <button id="close-sidebar" data-app-dashboard-toggle-shrink
+              class="app-dashboard-sidebar-close-button show-for-medium" aria-label="Close menu" type="button">
+              <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-left"></i></a></span>
+            </button>
+          </div>
+          <div class="app-dashboard-open-sidebar">
+            <button id="open-sidebar" data-app-dashboard-toggle-shrink
+              class="app-dashboard-open-sidebar-button show-for-medium" aria-label="open menu" type="button">
+              <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-right"></i></a></span>
+            </button>
+          </div>
+        </div>
+        <div class="app-dashboard-sidebar-inner">
+          <ul class="menu vertical">
+            <li><a href="/" class="is-active">
+                <i class="large fa fa-institution"></i><span class="app-dashboard-sidebar-text">Dashboard</span>
+              </a></li>
+            <li><a href="/customers">
+                <i class="large fa fa-hourglass"></i><span class="app-dashboard-sidebar-text">Customers</span>
+              </a></li>
+            <li><a href="/orders">
+                <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Orders</span>
+              </a></li>
+            <li><a href="/calander" class="is-active">
+                <i class="large fa fa-institution"></i><span class="app-dashboard-sidebar-text">Calander</span>
+              </a></li>
+            <li><a href="/reports">
+                <i class="large fa fa-hourglass"></i><span class="app-dashboard-sidebar-text">Reports</span>
+              </a></li>
+            <li><a href="/products">
+                <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Products</span>
+              </a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+        {{{body}}}
+      </div>
     </div>
   </div>
-</div>
 
 
   {{!-- <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Project 2</a>
-      </h1>
+     
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
@@ -92,10 +94,7 @@
         {{/if}}
       </nav>
     </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
+   
     <footer>
 
     </footer>
@@ -105,8 +104,11 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}} --}}
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <script src="/js/dashboard.js"></script>
+
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
-  integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
 </html>
