@@ -32,6 +32,46 @@ router.get("/orders", async (req, res) => {
   }
 });
 
+router.get("/calander", async (req, res) => {
+  try {
+    res.render("calander", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/reports", async (req, res) => {
+  try {
+    res.render("reports", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/products", async (req, res) => {
+  try {
+    res.render("products", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/new-employee", async (req, res) => {
+  try {
+    res.render("new-employee", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Use withAuth middleware to prevent access to route
 router.get("/profile", withAuth, async (req, res) => {
   try {
