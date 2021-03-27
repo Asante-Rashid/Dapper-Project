@@ -18,16 +18,17 @@
         <button data-toggle="app-dashboard-sidebar" class="menu-icon hide-for-medium"></button>
         <div class="app-dashboard-logo">Brazilian Bakery Cafe</div>
       </div>
-      <div class="columns medium-9 show-for-medium">
-        {{!-- <div class="app-dashboard-search-bar-container">
-          <input class="app-dashboard-search" type="search" placeholder="Search">
-          <i class="app-dashboard-search-icon fa fa-search"></i>
-        </div> --}}
-      </div>
+      <div class="columns medium-9 show-for-medium"></div>
       <div class="columns shrink app-dashboard-top-bar-actions">
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <button class="button hollow" id="logout">logout</button>
+        <!-- Render script for logged in users only -->
+        <script src="/js/logout.js"></script>
+        {{else}}
         <a href="/login">
-        <button class="button hollow">login</button></a>
-        {{!-- <a href="#" height="30" width="30" alt=""><i class="fa fa-info-circle"></i></a> --}}
+          <button class="button hollow">login</button></a>
+        {{/if}}
       </div>
     </div>
 
@@ -70,6 +71,9 @@
             <li><a href="/products">
                 <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Products</span>
               </a></li>
+              <li><a href="/new-employee">
+                <i class="large fa fa-industry"></i><span class="app-dashboard-sidebar-text">Add Employee</span>
+              </a></li>
           </ul>
         </div>
       </div>
@@ -81,9 +85,9 @@
   </div>
 
 
-  {{!-- <div class="flex-column justify-space-around">
+  <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
-     
+
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
@@ -94,16 +98,14 @@
         {{/if}}
       </nav>
     </header>
-   
+
     <footer>
 
     </footer>
   </div>
 
   <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}} --}}
+
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
     integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
   <script src="/js/dashboard.js"></script>
