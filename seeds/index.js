@@ -1,6 +1,7 @@
 const flavorCategories = require('./flavor-seeds');
 const productTypeCategories = require('./producttype-seeds');
 const sizeCategories = require('./size-seeds');
+const customerCategories = require('./customer-seeds')
 // const ordersCategories = require('./orders-seeds');
 const sequelize = require('../config/connection');
 
@@ -16,6 +17,11 @@ const seedAll = async () => {
     
     await sizeCategories();
     console.log('\n----- SIZE CATEGORIES SEEDED -----\n');
+    
+    await customerCategories();
+    console.log('\n----- CUSTOMER CATEGORIES SEEDED -----\n');
+
+    //TODO link all the files to sync the orders database
 
     // await ordersCategories();
     // console.log('\n----- ORDERS CATEGORIES SEEDED -----\n');

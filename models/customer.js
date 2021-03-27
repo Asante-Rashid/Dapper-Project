@@ -46,7 +46,7 @@ Customer.init(
     state: {
       type: DataTypes.STRING,
     },
-    zipcode: {
+    zipCode: {
       type: DataTypes.STRING,
       validate: {
         isNumeric: true,
