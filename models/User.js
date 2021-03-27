@@ -8,10 +8,6 @@ class User extends Model {
   }
 }
 
-//CHANGE THIS MODEL.
-//Do you want to track your users by first name AND last name?
-//Do you want a username column in addition to email?
-//Is there anything else about your user your application requires you to keep track of?
 User.init(
   {
     id: {
@@ -20,7 +16,11 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -38,6 +38,20 @@ User.init(
       validate: {
         len: [8],
       },
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIn: [['0', '1', '2', '3']],
+        max: 3,
+        isNumeric: true,
+        len:[1],
+      },
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
   },
   {
@@ -58,7 +72,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'User',
   }
 );
 

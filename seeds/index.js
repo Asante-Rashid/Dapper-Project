@@ -1,3 +1,4 @@
+const userCategories = require('./user-seeds');
 const flavorCategories = require('./flavor-seeds');
 const productTypeCategories = require('./producttype-seeds');
 const sizeCategories = require('./size-seeds');
@@ -8,6 +9,9 @@ const sequelize = require('../config/connection');
 const seedAll = async () => {
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
+
+    await userCategories();
+    console.log('\n----- USER CATEGORIES SEEDED -----\n');
 
     await flavorCategories();
     console.log('\n----- FLAVOR CATEGORIES SEEDED -----\n');
