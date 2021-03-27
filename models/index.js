@@ -6,9 +6,13 @@ const Flavor = require('./Flavor');
 const Orders = require('./Orders');
 
 
-module.exports = { User };
-module.exports = { ProductType };
-module.exports = { Customer };
-module.exports = { Size };
-module.exports = { Flavor };
-module.exports = { Orders };
+module.exports = { 
+    User,
+    ProductType,
+    Customer,
+    Size,
+    Flavor,
+    Orders
+};
+
+    
