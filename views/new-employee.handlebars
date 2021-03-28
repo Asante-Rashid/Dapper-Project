@@ -1,11 +1,8 @@
- <div class="col-md-6">
-    <h2>Signup</h2>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Create User</h2>
 
     <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
       <div class="form-group">
         <label for="email-signup">email:</label>
         <input class="form-input" type="text" id="email-signup" />
@@ -15,7 +12,19 @@
         <input class="form-input" type="password" id="password-signup" />
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
+        <label for="name-signup">Type of employee:</label>
+        <select class="form-input" id="employee-signup">
+          <option value="employee">Employee</option>
+          <option value="manager">Manager</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Create User</button>
       </div>
     </form>
   </div>
+  <div class="col-md-6">
+    <img src="/images/login-cake.png" alt="dopew cake">
+  </div>
+</div>
