@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-
 class ProductType extends Model { }
 
 ProductType.init(
@@ -17,6 +16,7 @@ ProductType.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        
         base_price: {
             type: DataTypes.INTEGER,
             allowNull: false,

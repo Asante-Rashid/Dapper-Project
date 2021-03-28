@@ -1,0 +1,67 @@
+User
+    - id
+    - first_name
+    - last_name
+    - email(unique)
+    - password(hash)
+    - role(0 | Employee, 1 | Manager, 2 | Other)
+    - is_admin(true / false)
+
+Customer
+    - id
+    - first_name
+    - last_name
+    - phone(unique)
+    - email
+    - city
+    - state
+    - zip
+    - address_1
+    - address_2
+
+ProductType
+    - id
+    - type(Cake, Pastry, Sweets, Bakery)(unique)
+    - base_price
+
+Size
+    - id
+    - size(10, 12, 14, 16, 20)
+    - base_price
+Flavor
+    - id
+    - name(code, example RedVelvet, Carrot, CheeseBread)
+    - description(desc, example "Red Velvet", "Carrot", "Cheese Bread")
+    - dough_type
+    - base_price
+    
+Orders
+    - id (can be order number)
+    - customer_id
+    - user_id (who made this order)
+    - create_timestamp(sequelize can make this for us, { timestamps: true })
+    - pickup_date
+        
+OrderItem 
+    - id
+    - order_id
+    - quantity
+    - base_price(added together from our other tables)
+    - additional_price(price multiplier ?)
+    - product_type_id
+    - size_id(nullable)
+    - flavor_id
+    - photo_link
+    - notes(longform text field)
+
+associations
+    - an Order hasMany OrderItems / an OrderItem belongsTo an Order
+    - an Order belongsTo a Customer / a Customer hasMany Order
+    - an Order belonsTo a User / a User hasMany Orders
+
+    - an OrderItem hasOne Flavor 
+    - an OrderItem hasOne ProductType 
+    - an OrderItem hasOne Size
+===================== EXTRA ==============================================
+ProductTypeSize (determines which sizes can be applied to a given product type)
+ProductTypeFlavor (determine which flavors can be applied to a given product type) - could hold images
