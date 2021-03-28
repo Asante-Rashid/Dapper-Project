@@ -138,7 +138,7 @@ const flavorData = [
     },
 ];
 
-console.log(flavorData);
+// console.log(flavorData);
 
 const flavorCategories = () => Flavor.bulkCreate(flavorData);
 

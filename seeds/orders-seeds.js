@@ -5,10 +5,10 @@ const { Orders } = require('../models');
 
 const ordersData = [
     {
-        pickup_date: '2021-11-05',
-        pickup_time: '13:00:00',
-        photo_link: 'photo link goes here',
-        notes: 'cake with more strawberries on the top'
+        customer_id: 1,
+        user_id: 1,
+        pickup_date: '2021-05-05',
+        pickup_time: '13:00',
     },
 ];
 
