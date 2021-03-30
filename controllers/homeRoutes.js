@@ -1,10 +1,11 @@
 const router = require("express").Router();
-const { Project, User } = require("../models");
+const { Customer, Flavor, OrderItem, Orders, ProductType, Size, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    res.render("homepage", {
+       res.render("homepage", {
+     
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -14,9 +15,15 @@ router.get("/", async (req, res) => {
 
 router.get("/customers", async (req, res) => {
   try {
-    res.render("customers", {
-      logged_in: req.session.logged_in,
-    });
+    // pulls data from customers table using sequalize
+    const customerData = await Customer.findAll();
+    // // Serialize the data so that the template can read it
+    const customers = customerData.map((Customer) => Customer.get({ plain: true }));
+   
+      res.render("customers", {
+        customers,
+        logged_in: req.session.logged_in,
+      });
   } catch (err) {
     res.status(500).json(err);
   }
