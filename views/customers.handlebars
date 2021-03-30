@@ -63,6 +63,22 @@
         </ul>
       </div>
     </form>
+    {{#if customers.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Customers:</h3>
+
+    {{#each customers as |customer|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/project/{{customer.id}}">{{customer.firstName}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{customer.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
   </div>
   {{!-- <ul class="menu">
     <li><input type="search" placeholder="Search"></li>
