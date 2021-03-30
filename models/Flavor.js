@@ -12,7 +12,7 @@ Flavor.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        flavor_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
