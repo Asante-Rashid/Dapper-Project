@@ -1,26 +1,47 @@
 <div class="row">
   <div class="col-md-6">
-    <h2>Create User</h2>
+    <h2>Create a new system user:</h2>
 
     <form class="form signup-form">
       <div class="form-group">
-        <label for="email-signup">email:</label>
+        <label for="name-signup">First Name:</label>
+        <input class="form-input" type="text" id="name-signup" />
+      </div>
+      <div class="form-group">
+        <label for="lastName-signup">Last Name:</label>
+        <input class="form-input" type="text" id="lastName-signup" />
+      </div>
+      <div class="form-group">
+        <label for="email-signup">Email:</label>
         <input class="form-input" type="text" id="email-signup" />
       </div>
       <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
+        <label for="password-signup">Password:</label>
+        <input class="form-input" type="password" autocomplete="new-password" id="password-signup" />
       </div>
       <div class="form-group">
-        <label for="name-signup">Type of employee:</label>
-        <select class="form-input" id="employee-signup">
-          <option value="employee">Employee</option>
-          <option value="manager">Manager</option>
-          <option value="admin">Admin</option>
-        </select>
+        <label>Role
+          <select id="role" name="role">
+            <option selected disabled hidden>Choose the role here</option>
+            <option value="3">Employee</option>
+            <option value="2">Manager</option>
+            <option value="1">General Manager</option>
+            <option value="0">Owner</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>Is this new user a system admin?</label>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Create User</button>
+        <div class="switch">
+          <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+          <label for="cmn-toggle-1"></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">signup</button>
       </div>
     </form>
   </div>
@@ -28,3 +49,5 @@
     <img src="/images/login-cake.png" alt="dopew cake">
   </div>
 </div>
+
+<script src="./js/newEmployee.js"></script>

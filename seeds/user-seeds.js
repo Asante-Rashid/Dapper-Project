@@ -67,6 +67,9 @@ const usersData = [
   },
 ];
 
-const userCategories = () => User.bulkCreate(usersData);
+const userCategories = () => User.bulkCreate(usersData, {
+  individualHooks: true,
+  returning: true,
+});
 
 module.exports = userCategories;
