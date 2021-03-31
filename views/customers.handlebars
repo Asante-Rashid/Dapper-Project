@@ -9,43 +9,43 @@
 
 <div class="row">
   <div class="col-md-5">
-    <form class="form signup-form">
+    <form class="form new-customer-form">
       <div class="form-group">
         <label for="email-signup">Fist Name</label>
-        <input class="form-input" type="text" id="email-signup" />
+        <input class="form-input" type="text" id="first-name" />
       </div>
       <div class="form-group">
         <label for="password-signup">Last Name</label>
-        <input class="form-input" type="password" id="password-signup" />
+        <input class="form-input" type="text" id="last-name" />
       </div>
       <div class="form-group">
         <label for="name-signup">Phone Number</label>
-        <input class="form-input" type="text" id="employee-signup" />
+        <input class="form-input" type="number" id="phone-number" />
       </div>
        <div class="form-group">
         <label for="name-signup">Email</label>
-        <input class="form-input" type="text" id="employee-signup" />
+        <input class="form-input" type="text" id="email" />
       </div>
        <div class="form-group">
         <label for="name-signup">Address</label>
-        <input class="form-input" type="text" id="employee-signup" />
+        <input class="form-input" type="text" id="address" />
       </div>
        <div class="form-group">
         <label for="name-signup">Address Line 2</label>
-        <input class="form-input" type="text" id="employee-signup" />
+        <input class="form-input" type="text" id="address-two" />
       </div>
       <div class="row"> 
       <div class="col-sm-6 form-group">
         <label for="name-signup">City</label>
-        <input class="form-input" type="text" id="min" >
+        <input class="form-input" type="text" id="city" >
       </div>
       <div class="col-sm-6 form-group">
         <label for="name-signup">Zip Code</label>
-        <input class="form-input" type="number"  id="max" >
+        <input class="form-input" type="number"  id="zip-code" >
       </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Create Customer</button>
+        <button class="btn btn-primary form-input" type="submit">Create Customer</button>
       </div>
     </form>
   </div>
@@ -53,7 +53,7 @@
   <div class="col-md-1"></div>
   {{!-- search bar in collumn 2 --}}
   <div class="col-md-5">
-    <form class="form signup-form py-4">
+    <form class="form customer-search-form py-4">
       <div class="form-group">
         <label for="email-signup"></label>
         {{!-- form-input class in needed but it messes with the formating --}}
@@ -63,9 +63,27 @@
         </ul>
       </div>
     </form>
+    {{#if customers.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Customers:</h3>
+
+    {{#each customers as |customer|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/project/{{customer.id}}">{{customer.firstName}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{customer.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
   </div>
   {{!-- <ul class="menu">
     <li><input type="search" placeholder="Search"></li>
     <li><button type="button" class="button">Search</button></li>
   </ul> --}}
 </div>
+
+<script src="./js/customers.js"></script>
