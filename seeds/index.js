@@ -29,7 +29,6 @@ const seedAll = async () => {
 
     await ordersCategories();
     console.log('\n----- ORDERS CATEGORIES SEEDED -----\n');
-    // //TODO link all the files to sync the orders database
     
     await orderItemCategories();
     console.log('\n----- ORDER_ITEM CATEGORIES SEEDED -----\n');

@@ -64,4 +64,4 @@ associations
     - an OrderItem hasOne Size
 ===================== EXTRA ==============================================
 ProductTypeSize (determines which sizes can be applied to a given product type)
-ProductTypeFlavor (determine which flavors can be applied to a given product type) - could hold images
+ProductTypeFlavor (determine which flavors can be applied to a given product type) - could hold images.
