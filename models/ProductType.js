@@ -4,6 +4,7 @@ const sequelize = require('../config/connection');
 class ProductType extends Model { }
 
 ProductType.init(
+
     {
         id: {
             type: DataTypes.INTEGER,

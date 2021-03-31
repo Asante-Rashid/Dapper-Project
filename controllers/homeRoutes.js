@@ -39,9 +39,9 @@ router.get("/orders", async (req, res) => {
   }
 });
 
-router.get("/calander", async (req, res) => {
+router.get("/calendar", async (req, res) => {
   try {
-    res.render("calander", {
+    res.render("calendar", {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -51,8 +51,24 @@ router.get("/calander", async (req, res) => {
 
 router.get("/reports", async (req, res) => {
   try {
+    const flavorData = await Flavor.findAll();
+    const flavors = flavorData.map(flavor => flavor.get({plain: true}));
+
+    const sizeData = await Size.findAll();
+    const sizes = sizeData.map(size => size.get({plain: true}));
+
+    const productTypeData = await ProductType.findAll();
+    const productType = productTypeData.map(productType => productType.get({ plain: true }));
+
+    console.log(sizes);
+    console.log(flavors);
+    console.log(productType);
+
     res.render("reports", {
       logged_in: req.session.logged_in,
+      flavors,
+      sizes,
+      productType
     });
   } catch (err) {
     res.status(500).json(err);
