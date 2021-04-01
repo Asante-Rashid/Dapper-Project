@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Orders } = require('../../models');
+const { Orders, Customer, User } = require('../../models');
 
 router.get('/', (req, res) => {
     Orders.findAll().then((orderData) => {
@@ -13,8 +13,5 @@ router.get('/:id', (req, res) => {
         res.json(orderData)
     })
 });
-
-
-
 
 module.exports = router;

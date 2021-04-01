@@ -2,13 +2,61 @@ const router = require("express").Router();
 const { Customer, Flavor, OrderItem, Orders, ProductType, Size, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect("/dashboard/today");
+    return;
+  }
+
+  res.render("login");
+});
+
+router.get('/dashboard/:date', async (req, res) => {
+  let passDate;
+  console.log("req.params.date: " + req.params.date);
+  if (req.params.date === "today") {
+    console.log("today code");
+    let d = new Date();
+    let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    let mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+    let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    passDate = `${ye}-${mo}-${da}`
+    // passDate = new Date().toISOString().slice(0, 10);
+  } else {
+    passDate = req.params.date;
+  }
+  console.log("passDate: " + passDate)
   try {
-       res.render("homepage", {
-     
-      logged_in: req.session.logged_in,
+    //  res.render("homepage", {
+
+    // logged_in: req.session.logged_in,
+    const dbOrderData = await Orders.findAll({
+      order: ['pickup_time'],
+      where: {
+        pickup_date: passDate,
+      },
+      include: [
+        {
+          model: Customer,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
+    });
+
+    const orders = dbOrderData.map((order) =>
+      order.get({ plain: true })
+    );
+    console.log(orders);
+    res.render('homepage', {
+      orders,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -19,11 +67,11 @@ router.get("/customers", async (req, res) => {
     const customerData = await Customer.findAll();
     // // Serialize the data so that the template can read it
     const customers = customerData.map((Customer) => Customer.get({ plain: true }));
-   
-      res.render("customers", {
-        customers,
-        logged_in: req.session.logged_in,
-      });
+
+    res.render("customers", {
+      customers,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,10 +100,10 @@ router.get("/calendar", async (req, res) => {
 router.get("/reports", async (req, res) => {
   try {
     const flavorData = await Flavor.findAll();
-    const flavors = flavorData.map(flavor => flavor.get({plain: true}));
+    const flavors = flavorData.map(flavor => flavor.get({ plain: true }));
 
     const sizeData = await Size.findAll();
-    const sizes = sizeData.map(size => size.get({plain: true}));
+    const sizes = sizeData.map(size => size.get({ plain: true }));
 
     const productTypeData = await ProductType.findAll();
     const productType = productTypeData.map(productType => productType.get({ plain: true }));
