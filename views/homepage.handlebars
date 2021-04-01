@@ -1,3 +1,69 @@
 <div class="jumbotron">
   <h1>Dashboard</h1>
 </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>New Order</h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="/customers" class="button">Create New Customer</a>
+        <form class="form search-customer py-4">
+          <div class="search-form">
+            <label for="search-customer">Search For Existing Customer</label>
+            <input class="form-input" type="text" id="name-signup" />
+            <span class="fa fa-fw fa-search field-icon"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h3>Current Orders</h3>
+    <hr>
+    <div class="row" id="order-date">
+      <div class="col-md-1"></div>
+      <div class="col-md-2" id="show-date-left">
+        <button class="btn" type="button"><i class="fas fa-arrow-left"></i></button>
+      </div>
+      <div class="col-md-6" id="show-date">
+        <h5 id="search-date"></h5>
+      </div>
+      <div class="col-md-2" id="show-date-right">
+        <button class="btn" type="button"><i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-2">
+        <p>Order ID</p>
+      </div>
+      <div class="col-md-3">
+        <p>Customer</p>
+      </div>
+      <div class="col-md-2">
+        <p>Pick-up Time</p>
+      </div>
+      <div class="col-md-2">
+        <p>Order Type</p>
+      </div>
+      <div class="col-md-2">
+        <p>Employee</p>
+      </div>
+    </div>
+    <div class="order-data">
+      {{#each orders as |order|}}
+      {{> homepage-orders}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.25.0/luxon.min.js" defer></script>
+<script src="../js/homepage.js"></script>

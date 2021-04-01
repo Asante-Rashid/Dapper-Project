@@ -14,7 +14,7 @@ const signupFormHandler = async (event) => {
     isAdmin = false;
   }
 
-  if (firstName && email && password) {
+  if (firstName && lastName && email && password) {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ firstName, lastName, email, password, role, isAdmin }),
@@ -24,6 +24,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/new-employee');
     } else {
+      console.log(response);
       alert(response.statusText);
     }
   }
