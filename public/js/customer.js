@@ -24,9 +24,9 @@ const newCustomerHandler = async (event) => {
       if (response.ok) {
           // If successful, redirect the browser to the profile page. Will probably need to change based on order creation
         document.location.replace('/dashboard/today');
-        alert('New customer created');
+        alert('Order created');
       } else {
-        alert('Failed to create customer');
+        alert('Failed to create order');
       }
     }
   };

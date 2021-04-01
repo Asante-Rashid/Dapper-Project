@@ -1,30 +1,29 @@
 <div class="row">
   <div class="col-md-5">
+
+    {{!-- LINK THIS TO THE CUSTOMER SELECTED --}}
+
     <h2>Creating Order for: {{customer.firstName}} {{customer.lastName}}</h2>
     <hr>
     <h3>Cake Information</h3>
   </div>
-
   <div class="col-md-7">
-
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-5">
-    <form class="form new-customer-form">
+    <form class="form order-item-form">
       <div class="row">
         <div class="col-sm-6 form">
           <label for="name-signup">Pick-up Date</label>
-
-          {{!-- This needs to get information from reports.js --}}
-          
-          <input class="form-input" type="text" class="span2" id="dp1">
-
+          <label for="start">Pick-up Date:</label>
+          <input type="date" class="form-input" id="pick-up-date" name="trip-start" value="today" min="2018-01-01"
+            max="2050-12-31">
         </div>
         <div class="col-sm-6 form">
           <label for="name-signup">Pick-up Time</label>
-          <input class="form-input" type="number" id="pickup-time">
+          <input type="time" class="form-input" id="pick-up-time" name="trip-start" value="today">
         </div>
       </div>
       <div class="row">
@@ -47,28 +46,34 @@
             {{/each}}
           </select>
         </div>
-        <div class="col-sm-3 form">
-          <label for="product-type">Type</label>
-          <select class="form-input" type="text" id="type" name="product-type">
-            {{#each productType }}
-            <option value={{id}} {{#selected}}selected="selected" {{/selected}}>{{product_type}}</option>
-            {{/each}}
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        {{!-- How might we add this automatically as soon as we select FLAVOR? --}}
-        <div class="col-sm-6 form">
-          <label for="dough-info">Dough</label>
-          <select class="form-input" type="text" id="dough" name="dough-picker">
-            {{#each flavors }}
-            <option value={{id}} {{#selected}}selected="selected" {{/selected}}>{{dough_type}}</option>
-            </option>
-            {{/each}}
-          </select>
-        </div>
 
-        {{!-- How might we link the price with the size of the cake? --}}
+
+        <div class="col-sm-3">
+
+            <label>Cake Format
+              <select class="form-input" id="cake-format" name="cake-format">
+                <option selected disabled hidden>Select Format Type</option>
+                <option value="1">Rounded</option>
+                <option value="2">Rectangular(14" and up)</option>
+              </select>
+            </label>
+          </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Dough
+              <select class="form-input" id="dough" name="dough">
+                <option selected disabled hidden>Select Dough Type</option>
+                <option value="1">Vanilla</option>
+                <option value="2">Chocolate</option>
+                <option value="3">Red Velvet</option>
+              </select>
+            </label>
+          </div>
+        </div>
 
         <div class="col-sm-3 form">
           <label for="name-signup">Price</label>
@@ -85,57 +90,26 @@
       </div>
       <div class="form">
         <label for="name-signup">Description</label>
-        <input class="form-input" type="text" id="address-two" />
+        <input class="form-input" type="text" id="description" />
       </div>
       <div class="form-group">
         <label for="name-signup">Add Link of image:</label>
-        <input class="form-input" type="text" id="address-two" />
+        <input class="form-input" type="text" id="image-link" />
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary form-input" type="submit">Create Customer</button>
+        <button class="btn btn-primary form-input" id="create-order" type="submit">Create Order</button>
       </div>
     </form>
   </div>
-  {{!-- spacer --}}
-  <div class="col-md-1"></div>
-  {{!-- search bar in collumn 2 --}}
-  <div class="col-md-5">
-    <form class="form customer-search-form py-4">
-      <div class="form-group">
-        <label for="email-signup"></label>
-        {{!-- form-input class in needed but it messes with the formating --}}
-        <ul class="menu">
-          <li><input type="search" placeholder="Search"></li>
-          <li><button type="button" class="button">Search</button></li>
-        </ul>
-      </div>
-    </form>
-    {{#if customers.length}}
-    <div class="col-md-6 project-list">
-      <h3>Current Customers:</h3>
-
-      {{#each customers as |customer|}}
-      <div class="row mb-2">
-        <div class="col-md-8">
-          <h4><a href="/project/{{customer.id}}">{{customer.firstName}}</a></h4>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-sm btn-danger" data-id="{{customer.id}}">DELETE</button>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-    {{/if}}
-  </div>
-  {{!-- <ul class="menu">
-    <li><input type="search" placeholder="Search"></li>
-    <li><button type="button" class="button">Search</button></li>
-  </ul> --}}
 </div>
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="./js/reports.js"></script>
+{{!--
+<script src="./js/reports.js"></script> --}}
+<link rel="stylesheet" type="text/css" href="./css/reports.css">
+
+<script src="./js/order.js"></script>

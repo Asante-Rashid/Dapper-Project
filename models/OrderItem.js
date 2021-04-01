@@ -48,6 +48,22 @@ OrderItem.init(
                 key: 'id',
             },
         },
+        
+        pickup_date: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isDate: true
+            },
+        },
+
+        pickup_time: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isDate: true
+            },
+        },
 
         quantity: {
             type: DataTypes.INTEGER,
