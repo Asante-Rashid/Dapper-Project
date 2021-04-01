@@ -28,8 +28,6 @@
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <button class="button hollow" id="logout">logout</button>
-        <!-- Render script for logged in users only -->
-        <script src="/js/logout.js"></script>
         {{else}}
         <a href="/login">
           <button class="button hollow">login</button></a>
@@ -97,7 +95,7 @@
   </div>
 
 
-  <div class="flex-column justify-space-around">
+  {{!-- <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
 
       <nav>
@@ -114,15 +112,17 @@
     <footer>
 
     </footer>
-  </div>
+  </div> --}}
 
-  <!-- Render script for logged in users only -->
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
     integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-  <script src="/js/dashboard.js">
+  <script src="/js/dashboard.js"></script>
 
-  </script>
+  <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 
 
 </body>

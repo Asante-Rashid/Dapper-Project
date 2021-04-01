@@ -11,41 +11,42 @@
   <div class="col-md-5">
     <form class="form new-customer-form">
       <div class="form-group">
-        <label for="email-signup">Fist Name</label>
-        <input class="form-input" type="text" id="first-name" />
+        <label for="first-name">Fist Name</label>
+        <input class="form-input" type="text" id="first-name" name="first-name"/>
       </div>
       <div class="form-group">
-        <label for="password-signup">Last Name</label>
-        <input class="form-input" type="text" id="last-name" />
+        <label for="last-name">Last Name</label>
+        <input class="form-input" type="text" id="last-name" name="last-name"/>
       </div>
       <div class="form-group">
-        <label for="name-signup">Phone Number</label>
-        <input class="form-input" type="number" id="phone-number" />
+        <label for="phone-number">Phone Number</label>
+        <input class="form-input" type="tel" id="phone-number" name="phone-number"/>
       </div>
        <div class="form-group">
-        <label for="name-signup">Email</label>
-        <input class="form-input" type="text" id="email" />
+        <label for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email"/>
       </div>
        <div class="form-group">
-        <label for="name-signup">Address</label>
-        <input class="form-input" type="text" id="address" />
+        <label for="address">Address</label>
+        <input class="form-input" type="text" id="address" name="address"/>
       </div>
        <div class="form-group">
-        <label for="name-signup">Address Line 2</label>
-        <input class="form-input" type="text" id="address-two" />
+        <label for="address-two">Address Line 2</label>
+        <input class="form-input" type="text" id="address-two" name="address-two"/>
       </div>
       <div class="row"> 
       <div class="col-sm-6 form-group">
-        <label for="name-signup">City</label>
-        <input class="form-input" type="text" id="city" >
+        <label for="city">City</label>
+        <input class="form-input" type="text" id="city" name="city">
       </div>
       <div class="col-sm-6 form-group">
-        <label for="name-signup">Zip Code</label>
-        <input class="form-input" type="number"  id="zip-code" >
+        <label for="zip-code">Zip Code</label>
+        <input class="form-input" type="number"  id="zip-code" name="zip-code">
       </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary form-input" type="submit">Create Customer</button>
+        {{!-- may need to take out form input on the class --}}
+        <button type="submit" class="btn btn-primary form-input">Create Customer</button>
       </div>
     </form>
   </div>
@@ -86,4 +87,4 @@
   </ul> --}}
 </div>
 
-<script src="./js/customers.js"></script>
+<script src="./js/customer.js"></script>
