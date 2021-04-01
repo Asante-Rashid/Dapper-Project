@@ -7,11 +7,27 @@ const { Customer } = require('../../models');
 //     })
 // });
 
-// router.get('/:id', (req, res) => {
-//     Customer.findByPk(req.params.id).then((CustomerData) => {
-//         res.json(CustomerData)
-//     })
-// });
+router.get('/:id', async (req, res) => {
+  try {
+    const customerData = Customer.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const project = projectData.get({ plain: true });
+
+    res.render('project', {
+      ...project,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // create a new customer
 // router.post('/', (req, res) => {
@@ -24,14 +40,14 @@ const { Customer } = require('../../models');
 // });
 
 router.post('/', async (req, res) => {
-    try {
-      const newCustomer = await Customer.create(req.body);
-  
-      res.status(200).json(newCustomer);
-    } catch (err) {
-      res.status(400).json(err);
-    }
-  });
+  try {
+    const newCustomer = await Customer.create(req.body);
+
+    res.status(200).json(newCustomer);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 // // update a customer by its `id` value
 // router.put('/:id', (req, res) => {
@@ -57,13 +73,13 @@ router.post('/', async (req, res) => {
 // });
 
 router.delete('/:id', (req, res) => {
-    Customer.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(() => {
-        res.status(204).end();
-    });
+  Customer.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.status(204).end();
+  });
 });
 
 module.exports = router;
