@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Customer } = require('../../models');
+const { Customer, OrderItem } = require('../../models');
 
 // router.get('/', (req, res) => {
 //     Customer.findAll().then((CustomerData) => {
@@ -7,27 +7,27 @@ const { Customer } = require('../../models');
 //     })
 // });
 
-router.get('/:id', async (req, res) => {
-  try {
-    const customerData = Customer.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+// ! this code was moved to the homeRoutes
+// router.get('/customer/:id', async (req, res) => {
+//   try {
+//     const customerData = Customer.findByPk(req.params.id);
+//     // , {
+//     //   include: [
+//     //     {
+//     //       model: OrderItem,
+//     //       attributes: ['product_type_id'],
+//     //     },
+//     //   ],
+//     // });
 
-    const project = projectData.get({ plain: true });
+//     const customer = customerData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('customer', { customer });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // create a new customer
 // router.post('/', (req, res) => {
