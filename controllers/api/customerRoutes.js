@@ -39,6 +39,29 @@ const { Customer, OrderItem } = require('../../models');
 //         })
 // });
 
+router.get('/phone/:phonenbr', async (req, res) => {
+  console.log("req.params.phonenbr: " + req.params.phonenbr);
+
+  try {
+    const dbCustomerData = await Customer.findOne({
+      where: {
+        phone_number: req.params.phonenbr,
+      },
+    });
+
+    if (!dbCustomerData) {
+      res
+        .status(400)
+        .json({ message: 'No customer found with that phone number - create a new customer!' });
+      return;
+    }
+    res.json({ custData: dbCustomerData, message: 'Customer found!' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const newCustomer = await Customer.create(req.body);
