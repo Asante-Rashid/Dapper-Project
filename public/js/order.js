@@ -27,8 +27,9 @@ const newOrderHandler = async (event) => {
             },
         });
         if (response.ok) {
+            const orderId = await response.json();
             // If successful, redirect the browser to the profile page. Will probably need to change based on order creation
-            document.location.replace('/products');
+            document.location.replace('/products/' + orderId);
             alert('New Order created');
         } else {
             alert('Failed to create order');
