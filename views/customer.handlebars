@@ -1,20 +1,41 @@
 
+<section class="">
+  <div class="text-left">
+    <h2>{{customer.firstName}}</h2>
+    <h6>{{{customer.lastName}}}</h6>
+    <h6>{{customer.phoneNumber}}</h6>
+    <h6>{{customer.email}}</h6>
+  </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="text-left">
-      <a class="button tiny alert" href="/customers">
-        < Previous</a>
-          <br>
-          <h2>{{customer.firstName}} {{{customer.lastName}}}</h2>
-          <p>{{{customer.addrLine1}}}, {{{customer.city}}}, "State" {{{customer.zipCode}}}</p>
-          <p>{{customer.email}}</p>
-          <p>{{customer.phoneNumber}}</p>
 
-    </div>
-    <hr>
-    <div>
-      <a class="button expanded" href="/reports">Create Order</a>
+  <div class="row">
+    <div class="col-md-5">
+  
+      <form class="form order-item-form" action="/create_order_item" method="POST">
+      <input type="hidden" value={{{customer.id}}} name="customerId"> 
+      <input type="hidden" value={{{customer.firstName}}} name="customerFirstName">
+      <input type="hidden" value={{{customer.lastName}}} name="customerLastName">
+      <input type="hidden" value={{{customer.phoneNumber}}} name="customerPhoneNumber">
+        <div class="row">
+          <div class="col-sm-6 form">
+            <label for="pick-up-date">Pick-up Date</label>
+            <label for="start">Pick-up Date:</label>
+            <input type="date" class="form-input" id="pickUpDate" name="pickUpDate" value="today" min="2018-01-01"
+              max="2050-12-31">
+          </div>
+          <div class="col-sm-6 form">
+            <label for="pick-up-time">Pick-up Time</label>
+            <input type="time" class="form-input" id="pickUpTime" name="pickUpTime" value="today">
+          </div>
+        </div>
+         
+        <div class="form-group">
+          <button class="btn btn-primary form-input" name="" id="create-order" type="submit">Create Order</button>
+        </div>
+      </form>
     </div>
   </div>
-  </div>
+
+
+</section>
+

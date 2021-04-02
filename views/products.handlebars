@@ -1,6 +1,5 @@
 
 
-
 <div class="container">
 
 <div class="button-group align-justify">
@@ -10,10 +9,9 @@
 
   <div class="row">
     <div class="col-md-6">
-
       <div class="order-header">
         <h2 class="header-title">
-          Maria dos Santos {{customer-name}}
+          <h2>{{{orderData}}}</h2>
         </h2>
         <h4>Order ID: {{order-id}}</h4>
       </div>
@@ -23,8 +21,8 @@
             <h2 class="pick-up-date">
              Pick-Up Date: 
             </h2>
-            <h4> Saturday, May 21st{{pick-up-date}} </h4>
-            <h4> 12:00 PM{{pick-up-time}} </h4>
+            <h4> Saturday, May 21st{{pickup_date}} </h4>
+            <h4> 12:00 PM{{pickup_time}} </h4>
           </div>
       </div>
 
@@ -38,7 +36,7 @@
         <tbody>
           <tr>
             <td data-label="First Name">Flavor:</td>
-            <td data-label="Last Name">{{flavor}}</td>
+            <td data-label="Last Name">{{flavor_name}}</td>
           </tr>
           <tr>
             <td data-label="First Name">Dough</td>
@@ -54,13 +52,12 @@
           </tr>
           <tr>
             <td data-label="First Name">Total Price</td>
-            <td data-label="Last Name">{{price}}</td>
+            <td data-label="Last Name">{{base_price}}</td>
           </tr>
           <tr>
             <td data-label="First Name">Description</td>
             <td data-label="Last Name">{{description}}</td>
           </tr>
-
 
         </tbody>
       </table>
