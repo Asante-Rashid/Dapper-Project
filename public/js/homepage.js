@@ -80,6 +80,21 @@ $(document).ready(function () {
         window.location.replace(newURL);
     };
 
+    const searchForCustomer = async (event) => {
+        const searchValue = $('#searchValue').val();
+        const response = await fetch(`/api/customers/phone/${searchValue}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        returnData = await response.json();
+        if (response.ok) {
+            custId = returnData.custData.id;
+            document.location.replace(`/customer/${custId}`);
+        } else {
+            alert(response.statusText);
+        }
+    };
+
     document
         .querySelector('#show-date-left')
         .addEventListener('click', leftBtnHandler);
@@ -87,5 +102,9 @@ $(document).ready(function () {
     document
         .querySelector('#show-date-right')
         .addEventListener('click', rightBtnHandler);
+
+    document
+        .querySelector('#search-customer')
+        .addEventListener('click', searchForCustomer);
 
 });
