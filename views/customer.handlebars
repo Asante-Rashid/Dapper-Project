@@ -1,11 +1,20 @@
-<section class="container">
- 
-<div class="text-center">
-  <h2>{{customer.firstName}}</h2>
-  <p>{{{customer.lastName}}}</p>
-  <p>{{customer.phoneNumber}}</p>
-  <p>Created by {{customer.email}}</p>
 
- 
-</div>
-</section>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="text-left">
+      <a class="button tiny alert" href="/customers">
+        < Previous</a>
+          <br>
+          <h2>{{customer.firstName}} {{{customer.lastName}}}</h2>
+          <p>{{{customer.addrLine1}}}, {{{customer.city}}}, "State" {{{customer.zipCode}}}</p>
+          <p>{{customer.email}}</p>
+          <p>{{customer.phoneNumber}}</p>
+
+    </div>
+    <hr>
+    <div>
+      <a class="button expanded" href="/reports">Create Order</a>
+    </div>
+  </div>
+  </div>
