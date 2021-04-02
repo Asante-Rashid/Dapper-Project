@@ -123,10 +123,14 @@ router.get("/reports", async (req, res) => {
   }
 });
 
-router.get("/products", async (req, res) => {
+router.get("/products/:order_id", async (req, res) => {
   try {
+    const orderId = req.params.order_id;
+    console.log(req.params)
+    //use this orderId to read the database and get all the info we need to pass to our template
     res.render("products", {
       logged_in: req.session.logged_in,
+     
     });
   } catch (err) {
     res.status(500).json(err);
