@@ -168,7 +168,8 @@ router.get("/profile", withAuth, async (req, res) => {
 
 router.get('/customer/:id', async (req, res) => {
   try {
-    const customerData = Customer.findByPk(req.params.id);
+    
+    const customerData = await Customer.findByPk(req.params.id);
     // , {
     //   include: [
     //     {
@@ -177,7 +178,7 @@ router.get('/customer/:id', async (req, res) => {
     //     },
     //   ],
     // });
-
+    // const customer = customerData.map((Customer) => Customer.get({ plain: true }));
     const customer = customerData.get({ plain: true });
 
     res.render('customer', { customer });
