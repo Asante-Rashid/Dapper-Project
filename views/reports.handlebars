@@ -3,7 +3,7 @@
 
     {{!-- LINK THIS TO THE CUSTOMER SELECTED --}}
 
-    <h2>Creating Order for: {{customer.firstName}} {{customer.lastName}}</h2>
+    <h2>Creating Order for: {{customerFirstName}} {{customerLastName}}</h2>
     <hr>
     <h3>Cake Information</h3>
   </div>
@@ -17,18 +17,11 @@
   <div class="col-md-5">
 
     <form class="form order-item-form">
-      <div class="row">
-        <div class="col-sm-6 form">
-          <label for="pick-up-date">Pick-up Date</label>
-          <label for="start">Pick-up Date:</label>
-          <input type="date" class="form-input" id="pick-up-date" name="trip-start" value="today" min="2018-01-01"
-            max="2050-12-31">
-        </div>
-        <div class="col-sm-6 form">
-          <label for="pick-up-time">Pick-up Time</label>
-          <input type="time" class="form-input" id="pick-up-time" name="trip-start" value="today">
-        </div>
-      </div>
+      <input type="hidden" id="customerId" value={{customerId}}>
+      <input type="hidden" id="customerFName" value={{customerFirstName}}>
+      <input type="hidden" id="customerLName" value={{customerLastName}} >
+      <input type="hidden" id="customerPNumber" value={{customerPhoneNumber}}>
+    
       <div class="row">
         <div class="col-sm-6 form">
           <label for="flavor-picker">Flavor</label>
@@ -100,11 +93,12 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary form-input" id="create-order" type="submit">Create Order</button>
+        <button class="btn btn-primary form-input" id="create-order" type="submit">Create Order Item</button>
       </div>
     </form>
   </div>
 </div>
+
 
 
 

@@ -77,6 +77,28 @@ router.get("/customers", async (req, res) => {
   }
 });
 
+
+router.get('/customer/:id', async (req, res) => {
+  try {
+    const customerData = await Customer.findByPk(req.params.id);
+    // , {
+    //   include: [
+    //     {
+    //       model: OrderItem,
+    //       attributes: ['product_type_id'],
+    //     },
+    //   ],
+    // });
+
+    const customer = customerData.get({ plain: true });
+    console.log(customer);
+    res.render('customer', { customer });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.get("/orders", async (req, res) => {
   try {
     res.render("orders", {
@@ -97,7 +119,18 @@ router.get("/calendar", async (req, res) => {
   }
 });
 
-router.get("/reports", async (req, res) => {
+
+// router.post("/create_order_item", async (req, res) => {
+//   try {
+//     res.render("reports", req.body, {
+//       logged_in: req.session.logged_in,
+//     });
+//   }catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.post("/create_order_item", async (req, res) => {
   try {
     const flavorData = await Flavor.findAll();
     const flavors = flavorData.map(flavor => flavor.get({ plain: true }));
@@ -107,30 +140,42 @@ router.get("/reports", async (req, res) => {
 
     const productTypeData = await ProductType.findAll();
     const productType = productTypeData.map(productType => productType.get({ plain: true }));
-
-    console.log(sizes);
-    console.log(flavors);
-    console.log(productType);
-
+    const { customerId, pickUpDate, pickUpTime, customerFirstName, customerLastName, customerPhoneNumber} = req.body;
+    
     res.render("reports", {
       logged_in: req.session.logged_in,
       flavors,
       sizes,
-      productType
+      productType,
+      customerId,
+      pickUpDate,
+      pickUpTime,
+      customerFirstName,
+      customerLastName,
+      customerPhoneNumber
     });
   } catch (err) {
     res.status(500).json(err);
   }
+  
 });
 
 router.get("/products/:order_id", async (req, res) => {
   try {
     const orderId = req.params.order_id;
-    console.log(req.params)
+    
+    // console.log(req.params);
+    const orderData = await OrderItem.findAll({
+      where: {
+        id: orderId,
+      }
+    }); 
+    console.log("\x1b[34m", orderData);
     //use this orderId to read the database and get all the info we need to pass to our template
     res.render("products", {
       logged_in: req.session.logged_in,
-     
+      orderData,
+      
     });
   } catch (err) {
     res.status(500).json(err);
@@ -141,6 +186,7 @@ router.get("/new-employee", async (req, res) => {
   try {
     res.render("new-employee", {
       logged_in: req.session.logged_in,
+  
     });
   } catch (err) {
     res.status(500).json(err);
@@ -162,27 +208,6 @@ router.get("/profile", withAuth, async (req, res) => {
       logged_in: true,
     });
   } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/customer/:id', async (req, res) => {
-  try {
-    const customerData = Customer.findByPk(req.params.id);
-    // , {
-    //   include: [
-    //     {
-    //       model: OrderItem,
-    //       attributes: ['product_type_id'],
-    //     },
-    //   ],
-    // });
-
-    const customer = customerData.get({ plain: true });
-
-    res.render('customer', { customer });
-  } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });

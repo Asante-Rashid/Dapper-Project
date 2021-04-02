@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
         .then((newOrderItemData) => {
             console.log(newOrderItemData)
             console.log("ïd")
-            console.log(newOrderItemData.dataValues.id);
+            console.log(newOrderItemnpData.dataValues.id);
             res.json(newOrderItemData.dataValues.id);
         }).catch((err) => {
             res.json(err)
