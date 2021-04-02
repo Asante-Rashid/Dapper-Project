@@ -1,4 +1,5 @@
 const newCustomerHandler = async (event) => {
+
   event.preventDefault();
 
   const firstName = document.querySelector('#first-name').value.trim();
