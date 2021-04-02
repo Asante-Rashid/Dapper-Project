@@ -9,8 +9,6 @@ const orderItemData = [
     product_type_id: 1,
     size_id: 1,
     flavor_id: 1,
-    pickup_date: '2021-05-05',
-    pickup_time: '13:00',
     additional_price: 10,
     quantity: 1,
     base_price: 36.00,

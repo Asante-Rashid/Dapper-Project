@@ -7,6 +7,8 @@ const ordersData = [
     {
         customer_id: 1,
         user_id: 1,
+        pickup_date: '2021-05-05',
+        pickup_time: '13:00',
     },
 ];
 
