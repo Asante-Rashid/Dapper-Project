@@ -1,5 +1,5 @@
 {
-  "name": "B.O.S. (Bakery Ordering System)",
+  "name": "BakeryOrderingSystem",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
