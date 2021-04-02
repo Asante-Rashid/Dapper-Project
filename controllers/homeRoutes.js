@@ -162,6 +162,27 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
+router.get('/customer/:id', async (req, res) => {
+  try {
+    const customerData = Customer.findByPk(req.params.id);
+    // , {
+    //   include: [
+    //     {
+    //       model: OrderItem,
+    //       attributes: ['product_type_id'],
+    //     },
+    //   ],
+    // });
+
+    const customer = customerData.get({ plain: true });
+
+    res.render('customer', { customer });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
