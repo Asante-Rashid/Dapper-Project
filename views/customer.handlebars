@@ -1,10 +1,39 @@
-<section class="container">
-<div class="text-center">
-  <h2>{{firstName}}</h2>
-  <p>{{{lastName}}}</p>
-  <p>{{phoneNumber}}</p>
-  <p>Created by {{email}}</p>
+<section class="">
+  <div class="text-left">
+    <h2>{{customer.firstName}}</h2>
+    <h6>{{{customer.lastName}}}</h6>
+    <h6>{{customer.phoneNumber}}</h6>
+    <h6>{{customer.email}}</h6>
+  </div>
 
- 
-</div>
+
+  <div class="row">
+    <div class="col-md-5">
+  
+      <form class="form order-item-form" action="/create_order_item" method="POST">
+      <input type="hidden" value={{{customer.id}}} name="customerId"> 
+      <input type="hidden" value={{{customer.firstName}}} name="customerFirstName">
+      <input type="hidden" value={{{customer.lastName}}} name="customerLastName">
+      <input type="hidden" value={{{customer.phoneNumber}}} name="customerPhoneNumber">
+        <div class="row">
+          <div class="col-sm-6 form">
+            <label for="pick-up-date">Pick-up Date</label>
+            <label for="start">Pick-up Date:</label>
+            <input type="date" class="form-input" id="pickUpDate" name="pickUpDate" value="today" min="2018-01-01"
+              max="2050-12-31">
+          </div>
+          <div class="col-sm-6 form">
+            <label for="pick-up-time">Pick-up Time</label>
+            <input type="time" class="form-input" id="pickUpTime" name="pickUpTime" value="today">
+          </div>
+        </div>
+         
+        <div class="form-group">
+          <button class="btn btn-primary form-input" name="" id="create-order" type="submit">Create Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
 </section>

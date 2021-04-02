@@ -13,15 +13,7 @@ Orders.init(
             autoIncrement: true,
         },
 
-        customer_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'customer',
-                key: 'id',
-            },
-        },
-
+        
         pickup_date: {
             type: DataTypes.STRING,
             allowNull: false,
