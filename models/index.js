@@ -1,6 +1,6 @@
 const User = require('./User');
 const ProductType = require('./ProductType');
-const Customer = require('./Customer');
+const Customer = require('./customer');
 // ! Customer case is omportant
 const Size = require('./Size');
 const Flavor = require('./Flavor');
