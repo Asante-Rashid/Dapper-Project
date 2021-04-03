@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Customer, Flavor, OrderItem, Orders, ProductType, Size, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect("/dashboard/today");
@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
-router.get('/dashboard/:date', async (req, res) => {
+router.get('/dashboard/:date', withAuth, async (req, res) => {
   let passDate;
   console.log("req.params.date: " + req.params.date);
   if (req.params.date === "today") {
@@ -54,6 +54,7 @@ router.get('/dashboard/:date', async (req, res) => {
     console.log(orders);
     res.render('homepage', {
       orders,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
@@ -61,7 +62,7 @@ router.get('/dashboard/:date', async (req, res) => {
   }
 });
 
-router.get("/customers", async (req, res) => {
+router.get("/customers", withAuth, async (req, res) => {
   try {
     // pulls data from customers table using sequalize
     const customerData = await Customer.findAll();
@@ -78,7 +79,7 @@ router.get("/customers", async (req, res) => {
 });
 
 
-router.get('/customer/:id', async (req, res) => {
+router.get('/customer/:id', withAuth, async (req, res) => {
   try {
     const customerData = await Customer.findByPk(req.params.id);
     // , {
@@ -99,7 +100,7 @@ router.get('/customer/:id', async (req, res) => {
   }
 });
 
-router.get("/orders", async (req, res) => {
+router.get("/orders", withAuth, async (req, res) => {
   try {
     res.render("orders", {
       logged_in: req.session.logged_in,
@@ -109,7 +110,7 @@ router.get("/orders", async (req, res) => {
   }
 });
 
-router.get("/calendar", async (req, res) => {
+router.get("/calendar", withAuth, async (req, res) => {
   try {
     res.render("calendar", {
       logged_in: req.session.logged_in,
@@ -130,7 +131,7 @@ router.get("/calendar", async (req, res) => {
 //   }
 // });
 
-router.post("/create_order_item", async (req, res) => {
+router.post("/create_order_item", withAuth, async (req, res) => {
   try {
     const flavorData = await Flavor.findAll();
     const flavors = flavorData.map(flavor => flavor.get({ plain: true }));
@@ -160,7 +161,7 @@ router.post("/create_order_item", async (req, res) => {
   
 });
 
-router.get("/products/:order_id", async (req, res) => {
+router.get("/products/:order_id", withAuth, async (req, res) => {
   try {
     const orderId = req.params.order_id;
     
@@ -182,7 +183,7 @@ router.get("/products/:order_id", async (req, res) => {
   }
 });
 
-router.get("/new-employee", async (req, res) => {
+router.get("/new-employee", withAuth, async (req, res) => {
   try {
     res.render("new-employee", {
       logged_in: req.session.logged_in,
