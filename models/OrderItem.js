@@ -89,24 +89,6 @@ OrderItem.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        
-        firstName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        phoneNumber: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isNumeric: true,
-                len: [10],
-            },
-        },
     },
     {
         sequelize,

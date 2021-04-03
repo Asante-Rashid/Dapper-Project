@@ -91,7 +91,11 @@ $(document).ready(function () {
             custId = returnData.custData.id;
             document.location.replace(`/customer/${custId}`);
         } else {
-            alert(response.statusText);
+            if (response.status === 400) {
+                $("#search-response").text("Customer not found - please create new customer");
+            } else {
+                alert(response.statusText);
+            }
         }
     };
 
@@ -106,5 +110,12 @@ $(document).ready(function () {
     document
         .querySelector('#search-customer')
         .addEventListener('click', searchForCustomer);
+
+    $(".edit-order").click(function () {
+        // work out which edit button has been pressed by looking at the value attribute
+        var btnId = $(this).attr("value");
+        // // using the value attribute send the user to the order confirmation page
+        document.location.replace(`/products/${btnId}`);
+    })
 
 });
