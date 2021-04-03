@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { OrderItem, Flavor, Customer, Size, ProductType} = require('../../models');
+const { OrderItem, Flavor, Customer, Size, ProductType } = require('../../models');
 
 router.get('/', (req, res) => {
     OrderItem.findAll().then((orderItemData) => {
@@ -33,17 +33,25 @@ router.get('/:id', (req, res) => {
 
 
 // TODO FIX THE create a new category
-router.post('/', (req, res) => {
-    console.log(req.body)
-    OrderItem.create(req.body)    
-        .then((newOrderItemData) => {
-            console.log(newOrderItemData)
-            console.log("ïd")
-            console.log(newOrderItemnpData.dataValues.id);
-            res.json(newOrderItemData.dataValues.id);
-        }).catch((err) => {
-            res.json(err)
-        })
+router.post('/', async (req, res) => {
+    try {
+        const newOrderItem = await OrderItem.create(req.body);
+        res.status(200).json(newOrderItem);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+
+    // console.log(req.body)
+    // OrderItem.create(req.body)    
+    //     .then((newOrderItemData) => {
+    //         console.log(newOrderItemData)
+    //         console.log("ïd")
+    //         console.log(newOrderItemnpData.dataValues.id);
+    //         res.json(newOrderItemData.dataValues.id);
+    //     }).catch((err) => {
+    //         res.json(err)
+    //     })
 });
 
 module.exports = router;

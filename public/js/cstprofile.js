@@ -16,21 +16,23 @@ const newOrderHandler = async (event) => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then(function(response) {
-        if (response.status === 404 || response.status === 400) {
-          return response.json(),
-          console.log(response)
-        }
-      }).then(function(object) {
-        if (object.type === 'error') {
-          console.log(object.type, object.message)
-        } else {
-          console.log('success')
-        }
+      // }).then(function(response) {
+      //   if (response.status === 404 || response.status === 400) {
+      //     return response.json(),
+      //     console.log(response)
+      //   }
+      // }).then(function(object) {
+      //   if (object.type === 'error') {
+      //     console.log(object.type, object.message)
+      //   } else {
+      //     console.log('success')
+      //   }
       });
-  
+      returnData = await response.json();
+      console.log(returnData);
+      orderId = returnData.id;
       if (response.ok) {
-        document.location.replace('/reports');
+        document.location.replace(`/create_order_item/${orderId}`);
         alert('New order created');
       } else {
         alert('Failed to create order');
