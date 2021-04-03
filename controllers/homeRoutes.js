@@ -121,15 +121,24 @@ router.get("/calendar", withAuth, async (req, res) => {
 });
 
 
-// router.post("/create_order_item", async (req, res) => {
-//   try {
-//     res.render("reports", req.body, {
-//       logged_in: req.session.logged_in,
-//     });
-//   }catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/create_order_item", async (req, res) => {
+  try {
+
+    const flavorData = await Flavor.findAll();
+    const flavors = flavorData.map((flavor) => flavor.get({ plain: true }));
+
+    const sizeData = await Size.findAll();
+    const sizes = sizeData.map((size) => size.get({ plain: true }));
+
+    res.render("reports", {
+      flavors,
+      sizes,  
+      logged_in: req.session.logged_in,
+    });
+  }catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post("/create_order_item", withAuth, async (req, res) => {
   try {

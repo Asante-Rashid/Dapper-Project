@@ -10,13 +10,14 @@ const newOrderHandler = async (event) => {
     const photo_link = document.querySelector('#image-link').value.trim();
     // const state = document.querySelector('#project-funding').value.trim();
     
-    const customerId = document.querySelector('#customerId').value.trim()
+    // const customer_id = document.querySelector('#customerId').value.trim()
     const customerFirstName = document.querySelector('#customerFName').value.trim()
     const customerLastName = document.querySelector('#customerLName').value.trim()
     const customerPhoneNumber = document.querySelector('#customerPNumber').value.trim()
     
     if (flavor_id && size_id && dough && base_price) {
-        const order_id = 1
+        const order_id = 1;
+        const customer_id = 1;
         const product_type_id = 1;
         const quantity = 1;
        
@@ -24,8 +25,7 @@ const newOrderHandler = async (event) => {
         const response = await fetch(`/api/OrderItem`, {
             method: 'POST',
             body: JSON.stringify({ order_id, product_type_id, size_id, flavor_id, quantity, 
-                flavor, size, dough, base_price, notes, photo_link, customerId, customerFirstName, 
-                customerLastName, customerPhoneNumber}),
+                dough, base_price, notes, photo_link, customer_id}),
             headers: {
                 'Content-Type': 'application/json',
             },
