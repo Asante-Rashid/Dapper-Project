@@ -197,18 +197,57 @@ router.get("/products/:order_id", withAuth, async (req, res) => {
   try {
     const orderId = req.params.order_id;
     
-    // console.log(req.params);
-    const orderData = await OrderItem.findAll({
+    // // console.log(req.params);
+    // const orderData = await OrderItem.findAll({
+    //   where: {
+    //     id: orderId,
+    //   }
+    // }); 
+    // console.log("\x1b[34m", orderData);
+
+    const dbOrderData = await Orders.findOne({
       where: {
         id: orderId,
-      }
-    }); 
-    console.log("\x1b[34m", orderData);
+      },
+      include: [
+        {
+          model: Customer,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: OrderItem,
+        },
+      ],
+    });
+    console.log("After findOne");
+    const order = dbOrderData.get({ plain: true });
+  
+    console.log(order);
+    console.log(order.orderitems[0].flavor_id);
+    const dbFlavorData = await Flavor.findOne({
+      where: {
+        id: order.orderitems[0].flavor_id,
+      },
+    });
+    const flavor = dbFlavorData.get({ plain: true });
+    console.log(flavor);
+    const dbSizeData = await Size.findOne({
+      where: {
+        id: order.orderitems[0].size_id,
+      },
+    });
+    const size = dbSizeData.get({ plain: true });
+    console.log(size);
     //use this orderId to read the database and get all the info we need to pass to our template
     res.render("products", {
       logged_in: req.session.logged_in,
-      orderData,
-      
+      order,
+      flavor,
+      size,
     });
   } catch (err) {
     res.status(500).json(err);
