@@ -121,7 +121,7 @@ router.get("/calendar", withAuth, async (req, res) => {
 });
 
 
-router.get("/create_order_item", async (req, res) => {
+router.get("/create_order_item/:orderId", async (req, res) => {
   try {
 
     const flavorData = await Flavor.findAll();
@@ -130,7 +130,30 @@ router.get("/create_order_item", async (req, res) => {
     const sizeData = await Size.findAll();
     const sizes = sizeData.map((size) => size.get({ plain: true }));
 
+
+    console.log("req.params.orderId: " + req.params.orderId);
+    const dbOrderData = await Orders.findOne({
+      where: {
+        id: req.params.orderId,
+      },
+      include: [
+        {
+          model: Customer,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
+    });
+    console.log("After findOne");
+    const order = dbOrderData.get({ plain: true });
+  
+    console.log(order);
+
     res.render("reports", {
+      order,
       flavors,
       sizes,  
       logged_in: req.session.logged_in,

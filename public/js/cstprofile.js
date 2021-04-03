@@ -28,9 +28,11 @@ const newOrderHandler = async (event) => {
       //     console.log('success')
       //   }
       });
-  
+      returnData = await response.json();
+      console.log(returnData);
+      orderId = returnData.id;
       if (response.ok) {
-        document.location.replace('/create_order_item');
+        document.location.replace(`/create_order_item/${orderId}`);
         alert('New order created');
       } else {
         alert('Failed to create order');
