@@ -25,16 +25,16 @@ Orders.init(
         pickup_time: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                isDate: true
-            },
+            // validate: {
+            //     isDate: true
+            // },
         },
 
-        user_id: {
+        customer_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'customer',
                 key: 'id',
             },
         },
