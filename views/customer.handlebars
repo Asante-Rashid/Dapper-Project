@@ -1,4 +1,4 @@
-<section class="">
+{{!-- <section class=""> --}}
   <div class="text-left">
     <h2>{{customer.firstName}}</h2>
     <h6>{{{customer.lastName}}}</h6>
@@ -10,32 +10,33 @@
   <div class="row">
     <div class="col-md-5">
 
-      <form class="form order-item-form" action="/create_order_item" method="POST">
-        <input type="hidden" value={{{customer.id}}} name="customer-id" id="customerId">
-        <input type="hidden" value={{{customer.firstName}}} name="customerFirstName">
-        <input type="hidden" value={{{customer.lastName}}} name="customerLastName">
-        <input type="hidden" value={{{customer.phoneNumber}}} name="customerPhoneNumber">
-        <div class="row">
-          <div class="col-sm-6 form">
-            <label for="pick-up-date">Pick-up Date</label>
-            <label for="start">Pick-up Date:</label>
-            <input type="date" class="form-input" id="pickUpDate" name="pickUpDate" value="today" min="2018-01-01"
-              max="2050-12-31">
+      <form class="form order-item-form">
+        {{!-- <form class="form order-item-form" action="/create_order_item" method="POST"> --}}
+          <input type="hidden" value={{{customer.id}}} name="customer-id" id="customerId">
+          <input type="hidden" value={{{customer.firstName}}} name="customerFirstName">
+          <input type="hidden" value={{{customer.lastName}}} name="customerLastName">
+          <input type="hidden" value={{{customer.phoneNumber}}} name="customerPhoneNumber">
+          <div class="row">
+            <div class="col-sm-6 form">
+              <label for="pick-up-date">Pick-up Date</label>
+              {{!-- <label for="start">Pick-up Date:</label> --}}
+              <input type="date" class="form-input" id="pickUpDate" name="pickUpDate" value="today" min="2018-01-01"
+                max="2050-12-31">
+            </div>
+            <div class="col-sm-6 form">
+              <label for="pick-up-time">Pick-up Time</label>
+              <input type="time" class="form-input" id="pickUpTime" name="pickUpTime" value="today">
+            </div>
           </div>
-          <div class="col-sm-6 form">
-            <label for="pick-up-time">Pick-up Time</label>
-            <input type="time" class="form-input" id="pickUpTime" name="pickUpTime" value="today">
+          <hr>
+          <div class="form-group">
+            <button class="btn btn-primary form-input" name="" id="create-order" type="submit">Create Order</button>
           </div>
-        </div>
-        <hr>
-        <div class="form-group">
-          <button class="btn btn-primary form-input" name="" id="create-order" type="submit">Create Order</button>
-        </div>
-      </form>
+        </form>
     </div>
   </div>
 
 
-</section>
+{{!-- </section> --}}
 
-<script src="./js/customerProfile.js"></script>
+{{!-- <script type="text/javascript" src="../js/cstprofile.js"></script> --}}

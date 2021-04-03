@@ -30,11 +30,11 @@ Orders.init(
             },
         },
 
-        user_id: {
+        customer_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'customer',
                 key: 'id',
             },
         },
