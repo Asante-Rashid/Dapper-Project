@@ -25,9 +25,9 @@ Orders.init(
         pickup_time: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                isDate: true
-            },
+            // validate: {
+            //     isDate: true
+            // },
         },
 
         customer_id: {

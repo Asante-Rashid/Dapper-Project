@@ -2,16 +2,17 @@ const newOrderHandler = async (event) => {
     event.preventDefault();
   
     const customer_id = document.querySelector('#customerId').value.trim();
-    const pickUpDate = document.querySelector('#pickUpDate').value.trim();
-    const pickUpTime = document.querySelector('#pickUpTime').value.trim();
+    const pickup_date = document.querySelector('#pickUpDate').value.trim();
+    const pickup_time = document.querySelector('#pickUpTime').value.trim();
     
   
     if (customer_id && pickUpDate && pickUpTime) {
       // ! ../ was neccisary otherwise you get err 404 not found
       // ! err 400 bad request. not sure how to fix -Asante
+      const user_id = '1';
       const response = await fetch(`/api/orders`, {
         method: 'POST',
-        body: JSON.stringify({ customer_id, pickUpDate, pickUpTime }),
+        body: JSON.stringify({ pickup_date, pickup_time, user_id, customer_id }),
         headers: {
           'Content-Type': 'application/json',
         },
