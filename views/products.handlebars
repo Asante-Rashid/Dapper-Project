@@ -13,16 +13,17 @@
         <h2 class="header-title">
           <h2>{{{orderData}}}</h2>
         </h2>
-        <h4>Order ID: {{order-id}}</h4>
+        <h4>Order ID: {{order.id}}</h4>
+        <h5>Customer: {{order.customer.first_name}} {{order.customer.last_name}}</h5>
       </div>
     </div>
       <div class="col-md-6">
           <div class="order-header">
             <h2 class="pick-up-date">
-             Pick-Up Date: 
+             Pick-Up Date/Time: 
             </h2>
-            <h4> Saturday, May 21st{{pickup_date}} </h4>
-            <h4> 12:00 PM{{pickup_time}} </h4>
+            <h4> {{order.pickup_date}} </h4>
+            <h4> {{order.pickup_time}} </h4>
           </div>
       </div>
 
@@ -36,15 +37,15 @@
         <tbody>
           <tr>
             <td data-label="First Name">Flavor:</td>
-            <td data-label="Last Name">{{flavor_name}}</td>
+            <td data-label="Last Name">{{flavor.flavor_name}}</td>
           </tr>
           <tr>
             <td data-label="First Name">Dough</td>
-            <td data-label="Last Name">{{dough}}</td>
+            <td data-label="Last Name">{{flavor.dough_type}}</td>
           </tr>
           <tr>
             <td data-label="First Name">Size</td>
-            <td data-label="Last Name">{{size}}</td>
+            <td data-label="Last Name">{{size.size}}</td>
           </tr>
           <tr>
             <td data-label="First Name">Format</td>
@@ -52,16 +53,17 @@
           </tr>
           <tr>
             <td data-label="First Name">Total Price</td>
-            <td data-label="Last Name">{{base_price}}</td>
+            <td data-label="Last Name">{{flavor.base_price}}</td>
           </tr>
           <tr>
-            <td data-label="First Name">Description</td>
-            <td data-label="Last Name">{{description}}</td>
+            <td data-label="First Name">Notes</td>
+            <td data-label="Last Name">{{order.orderitems.notes}}</td>
           </tr>
 
         </tbody>
       </table>
 
       <p>Image</p>
+      <p>{{order.orderitems.photo_link}}</p>
 
     </div>

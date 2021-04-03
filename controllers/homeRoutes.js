@@ -121,15 +121,47 @@ router.get("/calendar", withAuth, async (req, res) => {
 });
 
 
-// router.post("/create_order_item", async (req, res) => {
-//   try {
-//     res.render("reports", req.body, {
-//       logged_in: req.session.logged_in,
-//     });
-//   }catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/create_order_item/:orderId", async (req, res) => {
+  try {
+
+    const flavorData = await Flavor.findAll();
+    const flavors = flavorData.map((flavor) => flavor.get({ plain: true }));
+
+    const sizeData = await Size.findAll();
+    const sizes = sizeData.map((size) => size.get({ plain: true }));
+
+
+    console.log("req.params.orderId: " + req.params.orderId);
+    const dbOrderData = await Orders.findOne({
+      where: {
+        id: req.params.orderId,
+      },
+      include: [
+        {
+          model: Customer,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
+    });
+    console.log("After findOne");
+    const order = dbOrderData.get({ plain: true });
+  
+    console.log(order);
+
+    res.render("reports", {
+      order,
+      flavors,
+      sizes,  
+      logged_in: req.session.logged_in,
+    });
+  }catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post("/create_order_item", withAuth, async (req, res) => {
   try {
@@ -165,18 +197,57 @@ router.get("/products/:order_id", withAuth, async (req, res) => {
   try {
     const orderId = req.params.order_id;
     
-    // console.log(req.params);
-    const orderData = await OrderItem.findAll({
+    // // console.log(req.params);
+    // const orderData = await OrderItem.findAll({
+    //   where: {
+    //     id: orderId,
+    //   }
+    // }); 
+    // console.log("\x1b[34m", orderData);
+
+    const dbOrderData = await Orders.findOne({
       where: {
         id: orderId,
-      }
-    }); 
-    console.log("\x1b[34m", orderData);
+      },
+      include: [
+        {
+          model: Customer,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: OrderItem,
+        },
+      ],
+    });
+    console.log("After findOne");
+    const order = dbOrderData.get({ plain: true });
+  
+    console.log(order);
+    console.log(order.orderitems[0].flavor_id);
+    const dbFlavorData = await Flavor.findOne({
+      where: {
+        id: order.orderitems[0].flavor_id,
+      },
+    });
+    const flavor = dbFlavorData.get({ plain: true });
+    console.log(flavor);
+    const dbSizeData = await Size.findOne({
+      where: {
+        id: order.orderitems[0].size_id,
+      },
+    });
+    const size = dbSizeData.get({ plain: true });
+    console.log(size);
     //use this orderId to read the database and get all the info we need to pass to our template
     res.render("products", {
       logged_in: req.session.logged_in,
-      orderData,
-      
+      order,
+      flavor,
+      size,
     });
   } catch (err) {
     res.status(500).json(err);
